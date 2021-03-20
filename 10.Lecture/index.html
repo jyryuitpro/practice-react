@@ -11,15 +11,22 @@
         <div id="root"></div>
         <script type="text/babel">
             class GuGuDan extends React.Component {
-                constructor(props) {
-                    super(props);
-                    this.state = {
-                        first: Math.ceil(Math.random() * 9),
-                        second: Math.ceil(Math.random() * 9),
-                        value: '',
-                        result: '',
-                    };
-                }
+                // constructor(props) {
+                //     super(props);
+                //     this.state = {
+                //         first: Math.ceil(Math.random() * 9),
+                //         second: Math.ceil(Math.random() * 9),
+                //         value: '',
+                //         result: '',
+                //     };
+                // }
+
+                state = {
+                    first: Math.ceil(Math.random() * 9),
+                    second: Math.ceil(Math.random() * 9),
+                    value: '',
+                    result: '',
+                };
 
                 onSubmit = (e) => {
                     e.preventDefault();
@@ -44,21 +51,21 @@
 
                 render() {
                     return (
-                        <div>
+                        <React.Fragment>
                             <div>{this.state.first} 곱하기 {this.state.second}는?</div>
                             <form onSubmit={this.onSubmit}>
                                 <input type="number" value={this.state.value} onChange={this.onChange}/>
-                                <button>입력!</button>
+                                <button type="submit">입력!</button>
                             </form>
                             <div>{this.state.result}</div>
-                        </div>
+                        </React.Fragment>
                     );
                 }
             }
         </script>
         <script type="text/babel">
             // ReactDOM.render(e(LikeButton), document.querySelector('#root'));
-            ReactDOM.render(<div><GuGuDan /><GuGuDan /><GuGuDan /></div>, document.querySelector('#root'));
+            ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
         </script>
     </body>
 </html>
