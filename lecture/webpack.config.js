@@ -17,12 +17,21 @@ module.exports = {
            test: /\.jsx?/,
            loader: 'babel-loader',
            options: {
-               presets: ['@babel/preset-env', '@babel/preset-react'],
-               plugins: ['@babel/plugin-proposal-class-properties'],
+                presets: [
+                    ['@babel/preset-env', {
+                        targets: {
+                            browsers: ['> 1% in KR', 'last 2 chrome versions'], // browserslist
+                        },
+                        debug: true,
+                    }],
+                    '@babel/preset-react',
+                ],
+                plugins: ['@babel/plugin-proposal-class-properties'],
            },
         }],
     },
 
+    plugins: [],
     output: {
         path: path.join(__dirname, 'dist'), // C:\Users\jyryu\WebstormProjects\practice-react\lecture\dist
         filename: 'app.js'
