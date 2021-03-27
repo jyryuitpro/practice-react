@@ -30,7 +30,8 @@ module.exports = {
                 ],
                 plugins: [
                     '@babel/plugin-proposal-class-properties',
-                    'react-refresh/babel'
+                    'react-refresh/babel',
+                    'react-hot-loader/babel'
                 ],
            },
         }],

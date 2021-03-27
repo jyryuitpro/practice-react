@@ -16,7 +16,7 @@ const NumberBaseball = () => {
     const [result, setResult] = useState('');
     const [value, setValue] = useState('');
     const [answer, setAnswer] = useState(getNumbers());
-    const [tires, setTries] = useState([]);
+    const [tries, setTries] = useState([]);
 
     const onSubmitForm = (e) => {
         const {result, value, tries, answer} = this.state;
