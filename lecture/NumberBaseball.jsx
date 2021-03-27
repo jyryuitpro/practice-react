@@ -75,7 +75,6 @@ const NumberBaseball = () => {
                         <Try key={`${i + 1}차 시도 :`} tryInfo={v} />
                     );
                 })}
-                <li></li>
             </ul>
         </>
     );
