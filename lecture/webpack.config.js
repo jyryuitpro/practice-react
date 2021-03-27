@@ -1,5 +1,6 @@
 const path = require('path');
 const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+// process.env.NODE_ENV = 'production'; // 실서비스 : production
 
 module.exports = {
     name: 'wordrelay-setting',
