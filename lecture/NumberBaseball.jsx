@@ -1,5 +1,5 @@
-// import React, {Component} from 'react';
-import React, {useState} from 'react';
+// import React, {Component, createRef} from 'react';
+import React, {useRef, useState} from 'react';
 import Try from './Try';
 
 function getNumbers() { // 숫자 네 개를 겹치지 않고 랜덤하게 뽑는 함수
@@ -17,6 +17,7 @@ const NumberBaseball = () => {
     const [value, setValue] = useState('');
     const [answer, setAnswer] = useState(getNumbers());
     const [tries, setTries] = useState([]);
+    const inputEl = useRef(null);
 
     const onSubmitForm = (e) => {
         const {result, value, tries, answer} = this.state;
@@ -30,6 +31,7 @@ const NumberBaseball = () => {
             setValue('');
             setAnswer(getNumbers());
             setTries([]);
+            inputEl.current.focus();
         } else { // 답 틀렸으면
             const answerArray = value.split('').map((v) => parseInt(v));
             let strike = 0;
@@ -40,6 +42,7 @@ const NumberBaseball = () => {
                 setValue('');
                 setAnswer(getNumbers());
                 setTries([]);
+                inputEl.current.focus();
             } else {
                 for (let i = 0; i < 4; i += 1) {
                     if (answer[i] === answerArray[i]) {
@@ -52,6 +55,7 @@ const NumberBaseball = () => {
                     return [...prevTries.tries, {try: value, result: `${strike} 스트라이크, ${ball} 볼입니다`}]
                 });
                 setValue('');
+                inputEl.current.focus();
             }
         }
         console.log(value);
@@ -60,7 +64,6 @@ const NumberBaseball = () => {
     const onChangeInput = (e) => {
         setValue(e.target.value);
     };
-
 
     return (
         <>
