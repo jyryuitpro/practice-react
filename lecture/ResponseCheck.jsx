@@ -44,10 +44,30 @@ const ResponseCheck = () => {
             </>
     };
 
+    // return [
+    //     <div key="사과">사과</div>,
+    //     <div key="배">배</div>,
+    //     <div key="감">감</div>,
+    //     <div key="귤">귤</div>,
+    //     <div key="배">배</div>,
+    // ];
+
     return (
         <>
             <div id="screen" className={state} onClick={onClickScreen}>{message}</div>
-            {renderAverage()}
+            {(() => { // 즉시 실행함수를 활용하여 if문, for문 사용가능
+                if (result.length === 0) {
+                    return null;
+                } else {
+                    return (
+                        <>
+                            <div>평균시간: {result.reduce((a, c) => a + c) / result.length}ms</div>
+                            <button onClick={onReset}>리셋</button>
+                        </>
+                    );
+                }
+            })()}
+            {/*{renderAverage()}*/}
         </>
     );
 };
