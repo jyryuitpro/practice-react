@@ -14,10 +14,13 @@
         class LikeButton extends React.Component {
             constructor(props) {
                 super(props);
+                this.state = {
+                    liked: false,
+                };
             }
 
             render() {
-                return e('button', null, 'Like');
+                return e('button', {onClick: () => {this.setState({liked: true})}, type: 'submit'}, this.state.liked ? 'Liked' : 'Like');
             }
         }
     </script>
