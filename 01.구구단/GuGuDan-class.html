@@ -56,7 +56,7 @@
                         <div>{this.state.first} 곱하기 {this.state.second} 는?</div>
                         <form onSubmit={this.onSubmit}>
                             <input ref={this.onRefInput} type="number" value={this.state.value} onChange={this.onChange}/>
-                            <button type="submit">입력!</button>
+                            <button id="button" className="" htmlFor="" type="submit">입력!</button>
                         </form>
                         <div>{this.state.result}</div>
                     </React.Fragment>
