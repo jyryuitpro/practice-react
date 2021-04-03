@@ -21,11 +21,13 @@
             onSubmit = (e) => {
                 e.preventDefault();
                 if (parseInt(this.state.value) === this.state.first * this.state.second) {
-                    this.setState({
-                        result: '정답',
-                        first: Math.ceil(Math.random() * 9),
-                        second: Math.ceil(Math.random() * 9),
-                        value: '',
+                    this.setState((prevState) => { // 예전 상태값으로 새로운 상태값을 만드는 경우
+                        return {
+                            result: '정답: ' + prevState.value,
+                            first: Math.ceil(Math.random() * 9),
+                            second: Math.ceil(Math.random() * 9),
+                            value: '',
+                        };
                     });
                 } else {
                     this.setState({
