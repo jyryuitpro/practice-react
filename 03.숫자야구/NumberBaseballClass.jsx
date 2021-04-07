@@ -44,7 +44,7 @@ class NumberBaseballClass extends Component {
                 <ul>
                     {this.fruits.map((v, i) => { // 화살표 함수 return 생략가능
                         return (
-                            <Try value={v} index={i}/>
+                            <Try key={v.fruit + v.taste} value={v} index={i}/>
                         );
                     })}
                 </ul>
