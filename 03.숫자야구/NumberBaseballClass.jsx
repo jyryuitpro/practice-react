@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Try from './Try';
+import TryClass from './TryClass';
 
 function getNumbers() { // 숫자 네 개를 겹치지 않고 랜덤하게 뽑는 함수
     const candidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -23,9 +23,11 @@ class NumberBaseballClass extends Component {
         const {result, value, tries, answer} = this.state;
         e.preventDefault();
         if (value === answer.join('')) {
-            this.setState({
-                result: '홈런!',
-                tries: [...tries, {try: value, result: '홈런!'}],
+            this.setState((prevState) => {
+                return {
+                    result: '홈런!',
+                    tries: [...prevState.tries, {try: value, result: '홈런!'}],
+                };
             });
             alert('게임을 다시 시작합니다!');
             this.setState({
@@ -55,9 +57,11 @@ class NumberBaseballClass extends Component {
                         ball +=1;
                     }
                 }
-                this.setState({
-                    tries: [...tries, {try: value, result: `${strike} 스트라이크, ${ball} 볼입니다`}],
-                    value: '',
+                this.setState((prevState) => {
+                    return {
+                        tries: [...prevState.tries, {try: value, result: `${strike} 스트라이크, ${ball} 볼입니다`}],
+                        value: '',
+                    };
                 });
             }
         }
@@ -82,7 +86,7 @@ class NumberBaseballClass extends Component {
                 <ul>
                     {tries.map((v, i) => { // 화살표 함수 return 생략가능
                         return (
-                            <Try key={`${i + 1}차 시도 :`} tryInfo={v}/>
+                            <TryClass key={`${i + 1}차 시도 :`} tryInfo={v}/>
                         );
                     })}
                 </ul>
