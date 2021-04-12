@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
-class TryClass extends Component {
+class TryClass extends PureComponent {
     render() {
         const {tryInfo} = this.props;
         return (

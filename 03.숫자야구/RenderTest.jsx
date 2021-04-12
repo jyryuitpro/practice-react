@@ -1,20 +1,31 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 
-class RenderTest extends Component {
+class RenderTest extends PureComponent {
     state = {
         counter: 0,
+        string: 'hello',
+        number: 1,
+        boolean: true,
+        object: {},
+        array: [],
     };
 
+/*
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         if (this.state.counter !== nextState.counter) {
             return true;
         }
         return false;
     }
+*/
 
     onClick = () => {
+        // const array = this.state.array;
+        // this.state.array.push(5);
         this.setState({
-
+            // array: [],
+            // array: array,
+            array: [...this.state.array, 1],
         });
     };
 
