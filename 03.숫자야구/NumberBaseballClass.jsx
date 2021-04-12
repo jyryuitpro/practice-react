@@ -19,6 +19,10 @@ class NumberBaseballClass extends Component {
         tries: [],
     };
 
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+
+    }
+
     onSubmitForm = (e) => {
         const {result, value, tries, answer} = this.state;
         e.preventDefault();
