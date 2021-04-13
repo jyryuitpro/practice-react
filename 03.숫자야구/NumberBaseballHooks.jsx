@@ -70,11 +70,18 @@ const NumberBaseballHooks = memo(() => {
             </form>
             <div>시도: {tries.length}</div>
             <ul>
-                {tries.map((v, i) => { // 화살표 함수 return 생략가능
-                    return (
-                        <TryHooks key={`${i + 1}차 시도 :`} tryInfo={v}/>
-                    );
-                })}
+                {(() => {
+                    const array = [];
+                    for (let i = 0; i < tries.length; i++) {
+                        array.push(<TryHooks key={`${i + 1}차 시도 :`} tryInfo={v}/>);
+                    }
+                    return array;
+                })()}
+                {/*{tries.map((v, i) => { // 화살표 함수 return 생략가능*/}
+                {/*    return (*/}
+                {/*        <TryHooks key={`${i + 1}차 시도 :`} tryInfo={v}/>*/}
+                {/*    );*/}
+                {/*})}*/}
             </ul>
         </>
     );
