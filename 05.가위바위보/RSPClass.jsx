@@ -15,6 +15,12 @@ const scores = {
     보: -1,
 };
 
+const computerChoice = (imgCoord) => {
+    return Object.entries(rspCoords).find(function (v) {
+        return v[1] === imgCoord;
+    })[0];
+};
+
 class RSPClass extends Component {
     state = {
         result: '',
@@ -25,23 +31,7 @@ class RSPClass extends Component {
     interval;
 
     componentDidMount() { // 컴포넌트가 첫 렌더링된 후, 여기에 비동기 요청을 많이 해요.
-        this.interval = setInterval(() => { // 비동기 함수 바깥에 있는 변수를 참조하면 클로저가 발생해요.
-            const {imgCoord} = this.state;
-            // console.log(imgCoord === rspCoords.바위);
-            if (imgCoord === rspCoords.바위) {
-                this.setState({
-                    imgCoord: rspCoords.가위,
-                });
-            } else if (imgCoord === rspCoords.가위) {
-                this.setState({
-                    imgCoord: rspCoords.보,
-                });
-            } else if (imgCoord === rspCoords.보) {
-                this.setState({
-                    imgCoord: rspCoords.바위,
-                });
-            }
-        }, 1000);
+        this.interval = setInterval(this.changeHand, 100);
     }
 
     // shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -56,8 +46,52 @@ class RSPClass extends Component {
         clearInterval(this.interval);
     }
 
-    onClickBtn = (choice) => {
+    changeHand = () => { // 비동기 함수 바깥에 있는 변수를 참조하면 클로저가 발생해요.
+        const {imgCoord} = this.state;
+        // console.log(imgCoord === rspCoords.바위);
+        if (imgCoord === rspCoords.바위) {
+            this.setState({
+                imgCoord: rspCoords.가위,
+            });
+        } else if (imgCoord === rspCoords.가위) {
+            this.setState({
+                imgCoord: rspCoords.보,
+            });
+        } else if (imgCoord === rspCoords.보) {
+            this.setState({
+                imgCoord: rspCoords.바위,
+            });
+        }
+    }
 
+    onClickBtn = (choice) => {
+        const {imgCoord} = this.state;
+        clearInterval(this.interval);
+        const myScore = scores[choice];
+        const cpuScore = scores[computerChoice(imgCoord)];
+        const diff = myScore - cpuScore;
+        if (diff === 0) {
+            this.setState({
+                result: '비겼습니다!',
+            });
+        } else if ([-1, 2].includes(diff)) {
+            this.setState((prevState) => {
+                return {
+                    result: '이겼습니다!',
+                    score: prevState.score + 1,
+                };
+            });
+        } else {
+            this.setState((prevState) => {
+                return {
+                    result: '졌습니다!',
+                    score: prevState.score - 1,
+                };
+            });
+        }
+        setTimeout(() => {
+            this.interval = setInterval(this.changeHand, 100);
+        }, 2000);
     };
 
     render() {
