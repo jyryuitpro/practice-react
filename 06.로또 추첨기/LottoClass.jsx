@@ -42,12 +42,19 @@ class LottoClass extends Component {
     };
 
     componentDidMount() {
+        console.log('componentDidMount');
         this.runTimeouts();
+        console.log('로또 숫자를 생성합니다.');
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('componentDidUpdate');
         if (this.timeouts.length === 0) {
             this.runTimeouts();
+        }
+
+        if (prevState.winNumbers !== this.state.winNumbers) {
+            console.log('로또 숫자를 생성합니다.');
         }
     }
 
