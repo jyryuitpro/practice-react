@@ -3,13 +3,13 @@ import React, {memo} from 'react';
 const BallFunction = memo(({number}) => {
     let background;
     if (number <= 10) {
-        background = 'red';
-    } else if (number <= 20) {
         background = 'orange';
-    } else if (number <= 30) {
-        background = 'yellow';
-    } else if (number <= 40) {
+    } else if (number <= 20) {
         background = 'blue';
+    } else if (number <= 30) {
+        background = 'red';
+    } else if (number <= 40) {
+        background = 'gray';
     } else {
         background = 'green';
     }
