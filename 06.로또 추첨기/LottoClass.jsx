@@ -46,8 +46,7 @@ class LottoClass extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        const {winBalls} = this.state;
-        if (winBalls.length === 0) {
+        if (this.timeouts.length === 0) {
             this.runTimeouts();
         }
     }
